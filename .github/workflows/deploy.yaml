@@ -19,7 +19,7 @@ jobs:
           docker build -t abhinayreddydocker/react-test -f ./complex-gh-copy/client/Dockerfile.dev ./complex-gh-copy/client
           docker run -e CI=true abhinayreddydocker/react-test npm test
       - name: Set Service Key
-        uses: 'google-github-actions/auth@v0'
+        uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: '${{ secrets.GKE_SA_KEY }}'
  
@@ -56,7 +56,7 @@ jobs:
  
       - name: Apply
         run: |-
-          kubectl apply -f /simplek8s
+          kubectl apply -f ./simplek8s
           kubectl set image deployments/server-deployment server=abhinayreddydocker/multi-server-k8s-pgfix-gh:${{ env.SHA }}
           kubectl set image deployments/client-deployment client=abhinayreddydocker/multi-client-k8s-gh:${{ env.SHA }}
           kubectl set image deployments/worker-deployment worker=abhinayreddydocker/multi-worker-k8s-gh:${{ env.SHA }}
