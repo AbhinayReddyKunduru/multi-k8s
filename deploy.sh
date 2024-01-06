@@ -11,3 +11,4 @@ kubectl apply -f simplek8s
 kubectl set image deployments/server-deployment server=abhinayreddydocker/multi-server:$SHA
 kubectl set image deployments/client-deployment client=abhinayreddydocker/multi-client:$SHA
 kubectl set image deployments/worker-deployment worker=abhinayreddydocker/multi-worker:$SHA
+# modyfyig for new commit
