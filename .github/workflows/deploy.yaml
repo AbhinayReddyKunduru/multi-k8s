@@ -24,7 +24,7 @@ jobs:
           credentials_json: '${{ secrets.GKE_SA_KEY }}'
  
       - name: Set Project
-        uses: google-github-actions/setup-gcloud@v0
+        uses: google-github-actions/setup-gcloud@v1
         with:
           project_id: multi-k8s-410220
  
@@ -33,7 +33,7 @@ jobs:
           gcloud --quiet auth configure-docker
  
       - name: Get Credentials
-        uses: google-github-actions/get-gke-credentials@v0
+        uses: google-github-actions/get-gke-credentials@v1
         with:
           cluster_name: multi-cluster
           location: asia-south1-a
@@ -41,7 +41,7 @@ jobs:
       - name: Build
         run: |-
           docker build -t abhinayreddydocker/multi-client-k8s-gh:latest -t abhinayreddydocker/multi-client-k8s-gh:${{ env.SHA }} -f ./complex-gh-copy/client/Dockerfile ./complex-gh-copy/client
-          docker build -t abhinayreddydocker/multi-server-k8s-pgfix-gh:latest -t cabhinayreddydocker/multi-server-k8s-pgfix-gh:${{ env.SHA }} -f ./complex-gh-copy/server/Dockerfile ./complex-gh-copy/server
+          docker build -t abhinayreddydocker/multi-server-k8s-pgfix-gh:latest -t abhinayreddydocker/multi-server-k8s-pgfix-gh:${{ env.SHA }} -f ./complex-gh-copy/server/Dockerfile ./complex-gh-copy/server
           docker build -t abhinayreddydocker/multi-worker-k8s-gh:latest -t abhinayreddydocker/multi-worker-k8s-gh:${{ env.SHA }} -f ./complex-gh-copy/worker/Dockerfile ./complex-gh-copy/worker
  
       - name: Push
