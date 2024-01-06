@@ -16,7 +16,7 @@ jobs:
       - name: Test
         run: |-
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t abhinayreddydocker/react-test -f /complex-gh-copy/client/Dockerfile.dev /complex-gh-copy/client
+          docker build -t abhinayreddydocker/react-test -f ./complex-gh-copy/client/Dockerfile.dev ./complex-gh-copy/client
           docker run -e CI=true abhinayreddydocker/react-test npm test
       - name: Set Service Key
         uses: 'google-github-actions/auth@v0'
